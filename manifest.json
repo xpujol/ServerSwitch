@@ -9,7 +9,6 @@
   },
   "permissions": [
   	"tabs",
-	"local*",
-    	"http://skeater.co.uk"
+	"*"
   ]
 }
