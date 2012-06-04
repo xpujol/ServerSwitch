@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Server switch</title>
+    <style>
+    	
+		#serverList {border-top:thin solid #CCC;padding:0}
+		
+		.server {
+			margin:0.25em;
+			padding:0.25em 0;
+			overflow:auto;
+			border-bottom:thin solid #CCC; 
+		}
+		
+    	.server span {
+    		cursor:pointer;
+			display:block;
+			float:left;			
+			box-sizing:border:box;
+			padding:0.25em;
+		}
+		
+		.server .delete {
+			float:right;
+			border: thin solid #999;
+			background-color:#CCC;			
+		}
+    </style>
+    <!-- JavaScript and HTML must be in separate files for security. -->
+    <script src="ss.js"></script>
+  </head>
+  <body id="displayPage">
+	<p id="status">Loading...</p>
+	<div>
+		<input type="text" id="txt_addServer">
+		<input type="submit" value="Add new server" id="btn_addServer" />
+	</div>	
+	<div id="serverList"></div>
+  </body>
+</html>
