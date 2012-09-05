@@ -37,9 +37,6 @@ function saveServers() {
 	updateStatus('Servers saved');
 	localStorage.ServerSwitch = JSON.stringify(GLOBAL_currentServers);
 	displayServers();
-	
-	console.log(GLOBAL_currentServers);
-	console.log(localStorage.ServerSwitch);
 }
 
 // add a new server string to the list
@@ -56,6 +53,22 @@ function addServer() {
 	return false;
 }
 
+// add the current server in the url
+function addCurrentServer() {
+	/*
+	* TODO 
+	* Need to grab current server URL, add to txt field and call addServer()
+	*/
+}
+
+// if enter key is pressed, call add server
+function addServerOnEnter(event) {
+	// if key pressed is enter (keycode:13)
+	if(event.keyCode == 13) {
+		addServer();
+	}
+}
+
 // delete all occourances of server from list
 function delServer(event) {
 	var thisServer = event.target.title;
@@ -64,7 +77,6 @@ function delServer(event) {
 	
 	for(var s = 0; s < cntServers; s++) {
 		var checkServer = GLOBAL_currentServers[s];
-		console.log(checkServer+' : '+thisServer);
 		if (checkServer == thisServer) {
 			GLOBAL_currentServers.splice(s, 1);
 			break;
@@ -147,10 +159,10 @@ function displayServers() {
 		newTitle.textContent = thisServer;		
 
 		var newDelete = document.createElement('span');
-		newDelete.setAttribute('class','delete')
+		newDelete.setAttribute('class','delete btn')
 		newDelete.setAttribute('title',thisServer);		
 		newDelete.addEventListener("click", delServer);
-		newDelete.textContent = 'x';
+		newDelete.textContent = 'Delete';
 
 		newDiv.appendChild(newTitle);
 		newDiv.appendChild(newDelete);
@@ -167,4 +179,10 @@ window.onload = function() {
 	// add listener to add buttons
 	var btn = document.getElementById("btn_addServer");
 	btn.addEventListener("click", addServer);
+
+	var btn = document.getElementById("btn_currentServer");
+	btn.addEventListener("click", addCurrentServer);
+
+	var input = document.getElementById("txt_addServer");
+	input.addEventListener("keyup", addServerOnEnter);
 }

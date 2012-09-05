@@ -4,7 +4,7 @@
     <title>Server switch</title>
     <style>
     	
-    	#displayPage {width:300px}
+    	* {font-family:"Arial" sans-serif;}
     	
 		#serverList {border-top:thin solid #CCC;padding:0}
 		
@@ -22,21 +22,41 @@
 			box-sizing:border:box;
 			padding:0.25em;
 		}
-		
-		.server .delete {
-			float:right;
+
+		.server span.title {
+			width:100%;
+			box-sizing:border-box;
+			margin:0.2em 0;
+		}
+
+		.server span.title:hover {
+			background-color:#EEE;
+		}
+
+		.server span.btn {
+			float:left;
 			border: thin solid #999;
 			background-color:#CCC;			
+			border-radius: 2px;
+			padding:0.2em;
 		}
+
+		.server span.btn:hover {
+			background-color:#DDD;
+		}
+
+		.topPanel {overflow: auto;}
+		.btnMain {float:right;}
     </style>
     <!-- JavaScript and HTML must be in separate files for security. -->
     <script src="ss.js"></script>
   </head>
   <body id="displayPage">
 	<p id="status">Loading...</p>
-	<div>
+	<div class="topPanel">
 		<input type="text" id="txt_addServer">
-		<input type="submit" value="Add new server" id="btn_addServer" />
+		<input type="submit" value="Add new server" class="btnMain" id="btn_addServer" />
+		<input type="submit" value="Add current server" class="btnMain" id="btn_currentServer" />
 	</div>	
 	<div id="serverList"></div>
   </body>
