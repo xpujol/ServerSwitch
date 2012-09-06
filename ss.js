@@ -89,7 +89,7 @@ function delServer(event) {
 
 // switch server, keep path and query
 function changeServer(event) {
-	var thisServer = event.target.innerHTML; 	
+	var thisServer = event.target.innerHTML;
 
 	// open new tab
 	chrome.windows.getCurrent({'populate' : true},function(window){
@@ -106,6 +106,31 @@ function changeServer(event) {
 			};
 		}
 	});
+}
+
+// move server up/down in list
+function moveServer(event) {
+	var thisDirection = event.target.className;
+	var thisServer = event.target.title;
+
+	var cntServers = GLOBAL_currentServers.length;
+
+	for(var s = 0; s < cntServers; s++) {
+		var checkServer = GLOBAL_currentServers[s];
+		if (checkServer == thisServer) {
+			// swap servers
+			if(thisDirection.search(/down/gi) == -1) {
+				GLOBAL_currentServers[s] = GLOBAL_currentServers[s-1];
+				GLOBAL_currentServers[s-1] = thisServer;
+			} else {
+				GLOBAL_currentServers[s] = GLOBAL_currentServers[s+1];
+				GLOBAL_currentServers[s+1] = thisServer;
+			}
+			break;
+		}
+	}
+
+	saveServers();
 }
 
 // change tab to new url
@@ -165,6 +190,27 @@ function displayServers() {
 		newDelete.textContent = 'Delete';
 
 		newDiv.appendChild(newTitle);
+
+		// move up button - not to element 0
+		if(s != 0) {
+			var moveUp = document.createElement('span');
+			moveUp.setAttribute('class','move up btn');
+			moveUp.setAttribute('title',thisServer);		
+			moveUp.addEventListener("click", moveServer);
+			moveUp.textContent = 'Up';
+			newDiv.appendChild(moveUp);
+		}
+
+		// move down button - not to element [cntServers-1]
+		if(s < cntServers-1) {
+			var moveDown = document.createElement('span');
+			moveDown.setAttribute('class','move down btn');
+			moveDown.setAttribute('title',thisServer);		
+			moveDown.addEventListener("click", moveServer);
+			moveDown.textContent = 'Down';
+			newDiv.appendChild(moveDown);
+		}
+		
 		newDiv.appendChild(newDelete);
 
 		serverList.appendChild(newDiv);

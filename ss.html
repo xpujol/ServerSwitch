@@ -4,8 +4,43 @@
     <title>Server switch</title>
     <style>
     	
-    	* {font-family:"Arial" sans-serif;}
+    	* {
+    		font-family:"Arial" sans-serif;
+    	}
     	
+    	#status {
+    		font-size: 0.9em;
+    		text-align: center;
+    	}
+
+		.topPanel {overflow: auto;}
+		
+		.btn {
+			border: thin solid #999;
+			background-color:#CCC;			
+			border-radius: 2px;
+			padding:0.2em;
+			cursor:pointer;
+			font-size:0.7em;
+		}
+
+		.btn:hover {
+			background-color:#DDD;
+		}
+
+		.topPanel #btn_currentServer {
+			width:100%;
+		}
+
+		.topPanel #btn_addServer {
+			float:right;
+			width:25%;
+		}
+
+		.topPanel #txt_addServer {
+			width:65%;
+		}
+
 		#serverList {border-top:thin solid #CCC;padding:0}
 		
 		.server {
@@ -23,30 +58,28 @@
 			padding:0.25em;
 		}
 
-		.server span.title {
+		.server .title {
 			width:100%;
 			box-sizing:border-box;
 			margin:0.2em 0;
+			font-size:0.7em;
 		}
 
-		.server span.title:hover {
+		.server .title:hover {
 			background-color:#EEE;
 		}
 
-		.server span.btn {
+		.server .btn {
 			float:left;
-			border: thin solid #999;
-			background-color:#CCC;			
-			border-radius: 2px;
-			padding:0.2em;
 		}
 
-		.server span.btn:hover {
-			background-color:#DDD;
+		.server .btn.delete {
+			float:right;
 		}
 
-		.topPanel {overflow: auto;}
-		.btnMain {float:right;}
+		.server .btn.move {
+			margin-right: 0.2em;
+		}
     </style>
     <!-- JavaScript and HTML must be in separate files for security. -->
     <script src="ss.js"></script>
@@ -54,9 +87,9 @@
   <body id="displayPage">
 	<p id="status">Loading...</p>
 	<div class="topPanel">
+		<input type="submit" value="Add current server" class="btn" id="btn_currentServer" />				
+		<input type="submit" value="Add" class="btn" id="btn_addServer" />
 		<input type="text" id="txt_addServer">
-		<input type="submit" value="Add new server" class="btnMain" id="btn_addServer" />
-		<input type="submit" value="Add current server" class="btnMain" id="btn_currentServer" />
 	</div>	
 	<div id="serverList"></div>
   </body>
