@@ -43,7 +43,7 @@ function saveServers() {
 function addServer() {
 	var newServer = document.getElementById('txt_addServer').value;
 
-	if(GLOBAL_currentServers.join().search(newServer) == -1) {
+	if(GLOBAL_currentServers.indexOf(newServer) == -1) {
 		GLOBAL_currentServers.push(newServer);
 		saveServers();
 	} else {
