@@ -142,7 +142,7 @@ function updateTab(server,tab) {
 	var s = '';
 	var d = '';
 	
-	url = url.replace(/http:\/\//gi,'');
+	url = url.replace(/https?:\/\//gi,'');
 	
 	// break off query string
 	tmp = url.search(/\?|$/);
